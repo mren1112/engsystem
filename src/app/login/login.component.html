@@ -1,0 +1,44 @@
+<body>
+  <header>
+      <h1>Eng  Login</h1>
+  </header>
+  <main>
+      <form class="form_class" [formGroup]="loginform"   (ngSubmit)="onSubmit()" novalidate>
+          <div class="form_div">
+            <div class="form-group">
+            <label>Login:</label>
+              <input class="field_class " id="username"
+              name="username" type="text" placeholder="username"
+              formControlName="username"
+              [(ngModel)]="loginformdata.username"
+              [class.is-invalid]="f['username'].invalid && (f['username'].dirty || f['username'].touched)"
+              >
+              <div *ngIf="f['username'].touched && f['username'].invalid" class="alert alert-danger">
+                <div *ngIf="f['username'].errors && f['username'].errors['required']">Name is required.</div>
+                <div *ngIf="f['username'].errors && f['username'].errors['minlength']">Name should be 3 character.</div>
+              </div>
+
+            </div>
+
+              <label>Password:</label>
+              <input id="pass" class="field_class"
+              name="password_txt" type="password" placeholder="password" [(ngModel)]="loginformdata.password">
+              <div>
+                <div class="row">
+                <div class="col-md-6 button_left_class">
+                    <button class="submit_class" type="submit" (click)="validateLogin(loginformdata)">Login</button>
+                  </div>
+                  <div class="col-md-6 button_righ_class">
+                    <button class="cancle_class" type="submit" (click)="onReset()">Cancle</button></div>
+                </div>
+              </div>
+          </div>
+          <div class="info_div">
+              <p>cccccccccdzxzzzz</p>
+          </div>
+      </form>
+  </main>
+  <footer>
+      <p>cccccccccdzxzzzz</p>
+  </footer>
+</body>
