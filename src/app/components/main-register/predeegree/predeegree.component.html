@@ -1,0 +1,467 @@
+<head>
+
+</head>
+<main>
+
+
+  <div class="row">
+    <div class="col s12 m6">
+      <div class="card">
+        <div class="card-content ">
+
+          <form [formGroup]="registerForm"> <span class="card-title"><b><i class="material-icons">brightness_7</i>
+                สมัครคัดเลือกเข้าศึกษาแบบ
+                Pre-degree
+                คณะวิศวกรรมศาสตร์ มหาวิทยาลัยรามคำแหง</b></span>
+            <hr>
+            <section *ngIf="section1">
+            <div class="row">
+              <div class="col-sm-5 s4 custom-col-inner">
+                <h3 class="text-bold"><i class="material-icons">business</i> สาขาวิชา </h3>
+                <div class="div-pdding-left  ">
+                  <mat-form-field>
+                    <mat-label>Favorite major</mat-label>
+                    <mat-select [(ngModel)]="MAJOR" formControlName="major"
+                    ngDefaultControl>
+                    <!--(selectionChange)="onSelectSection(1)"-->
+                      <mat-option *ngFor="let item of faculties " [value]="item.MAJOR_NO">
+                        {{item.MAJOR_NAME_THAI}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-hint class="remark">เลือกสาขา</mat-hint>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-sm-7 s8 custom-col-inner">
+                <div>
+                  <h3 class="text-bold"><b> <i class="material-icons">directions</i> หมายเหตุ กลุ่มเรียน</b></h3>
+                  <div class="div-pdding-left ">
+                    <b>กลุ่มเรียนที่ 1 </b> เรียนในเวลาราชการ และวันเสาร์ วันอาทิตย์ <br>
+                    <b>กลุ่มเรียนที่ 2 </b> เรียนจันทร์-ศุกร์ 18.00 น. – 21.00 น. และวันเสาร์ วันอาทิตย์ <br>
+                    <b class="remark">กลุ่มเรียนที่ 2* </b> เรียนวันศุกร์ 18.00 น. – 21.00 น. และวันเสาร์ วันอาทิตย์
+                    <br>
+                    <b>กลุ่มเรียนที่ 3 </b> เรียนเฉพาะวันเสาร์ และวันอาทิตย์ <br>
+                    <b class="remark">กลุ่มเรียนที่ 3* </b> เรียนเฉพาะวันอาทิตย์
+                  </div>
+                </div>
+              </div>
+            </div><!-- div 1ft row-->
+          </section>
+            <!-- end 1 section -->
+            <section *ngIf="section2">
+              <div class="row">
+              </div> <!-- div 2th paragraph-->
+              <hr style="margin-top: 2%;">
+              <div class="row" *ngIf="section2">
+                <div class="col-sm-4 s4 custom-col-inner">
+                  <h3 class="text-bold"><i class="material-icons">person_pin</i> รายละเอียดข้อมูลผู้สมัคร</h3>
+                  <div class="div-pdding-left">
+                    <div class="input-field">
+                      <h4 for="citizen_id"> หมายเลขบัตรประชาชน <span class="remark">*</span> </h4>
+                      <input matInput placeholder="Placeholder"
+                       type="text" maxlength="13"
+                        numbersOnly ngDefaultControl [ngModel]="ct"
+                        formControlName="citizenid"
+                        (ngModelChange)="validNationalID($event)">
+                      <mat-hint class="remark" style="font-size: 10.5px;">หมายเลขบัตร 13 หลัก<span
+                          class="remark">*</span>
+                      </mat-hint>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-9 s9 custom-col-inner">
+                </div>
+              </div> <!-- div 3th paragraph-->
+
+              <div class="col-sm-4 s4">
+                <div class="div-pdding-left">
+                  <div class="input-field">
+                    <h4 for="citizen_id"> คำนำหน้านาม* <span class="remark">*</span> </h4>
+                    <mat-form-field>
+                      <mat-label>Favorite major</mat-label>
+                      <mat-select formControlName="prename" ngDefaultControl>
+                        <mat-option [value]="1">
+                          นาย
+                        </mat-option>
+                        <mat-option [value]="1">
+                          นางสาว
+                        </mat-option>
+                        <mat-option [value]="1">
+                          อื่นๆ
+                        </mat-option>
+                      </mat-select>
+                      <mat-hint class="remark">เลือกคำนำหน้า</mat-hint>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-5 s5 custom-col-inner">
+                  <div class="div-pdding-left">
+                    <div class="input-field ">
+                      <h4 for="citizen_id"> ชื่อ (ไทย) <span class="remark">*</span> </h4>
+                      <input placeholder="Placeholder" formControlName="snameTH" type="text" class="validate" ngDefaultControl>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-5 s5 ">
+                  <div class="div-pdding-left">
+                    <div class="input-field ">
+                      <h4 for="citizen_id"> นามสกุล (ไทย) <span class="remark">*</span></h4>
+                      <input placeholder="Placeholder" formControlName="lnameTH"  type="text" class="validate" ngDefaultControl>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-2 s2"></div>
+              </div><!-- div 4th paragraph-->
+              <div class="row">
+                <div class="col-sm-5 s5 custom-col-inner">
+                  <div class="div-pdding-left">
+                    <div class="input-field ">
+                      <h4 for="citizen_id"> ชื่อ (ENG) <span class="remark">*</span> </h4>
+                      <input placeholder="Placeholder" formControlName="snameEN" type="text" class="validate" ngDefaultControl>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-5 s5 ">
+                  <div class="div-pdding-left">
+                    <div class="input-field ">
+                      <h4 for="citizen_id"> นามสกุล (ENG) <span class="remark">*</span></h4>
+                      <input placeholder="Placeholder" formControlName="lnameEN" type="text" class="validate" ngDefaultControl>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-2 s2"></div>
+              </div><!-- div 4th paragraph-->
+              <div class="row">
+                <div class="col-sm-6 s6 ">
+                  <div style="padding-left: 7%;">
+                    <mat-form-field>
+                      <mat-label style="font-weight: bold;">
+                        <h4 for="citizen_id"> วัน/เดือน/ปีเกิด <span class="remark">*</span></h4>
+                      </mat-label>
+                      <input matInput [matDatepicker]="picker"
+                       (dateChange)="onSelectSection(2)"
+                       formControlName="birthDate" >
+                      <mat-hint class="remark">วัน/เดือน/ปี</mat-hint>
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker ngDefaultControl></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="col-sm-6 s6"></div>
+              </div><!-- div 5th paragraph-->
+              <hr>
+            </section>
+            <!-- end 2 section-->
+            <section section *ngIf="section3">
+
+
+              <div class="row">
+                <h3 class="text-bold"><i class="material-icons">assignment_ind</i> รายละเอียดส่วนตัว</h3>
+                <div class="col-sm-4 s4  custom-col-inner div-pdding-left-inner">
+                  <div class="div-pdding-left">
+                    <div class="input-field ">
+                      <h4 for="citizen_id"> บ้านเลขที่ <span class="remark">*</span> </h4>
+                      <input placeholder="Placeholder" formControlName="addrid" type="text" class="validate" ngDefaultControl>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 s6 ">
+                  <div class="div-pdding-left">
+                    <div class="input-field ">
+                      <h4 for="citizen_id"> ที่อยู่ <span class="remark">*</span></h4>
+                      <input placeholder="Placeholder" formControlName="addr" type="text" class="validate" ngDefaultControl>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-2"></div>
+              </div><!-- div 7th paragraph-->
+
+              <div class="row">
+                <div class="col-sm-8 s4  custom-col-inner div-pdding-left-inner">
+                    <div class="div-padding-left" style="padding-left: 4%;">
+                      <h4 for="citizen_id"> ค้นหาข้อมูลจังหวัด <span class="remark">*</span></h4>
+                      <input placeholder="กรอกอย่างใดอย่างหนึ่ง เช่น ตำบล, อำเภอ, จังหวัด หรือ รหัสไปรษณีย์" list="zipcode"
+                      matInput (input)="onChangeEvent($event)" />
+                      <div *ngFor="let item of dataAddress ">
+                        <button class="button" mat-raised-button color="success" (click)="addAddress(item)">
+                        {{ item.amphoe }} >> {{ item.district }} >> {{ item.province }} >>
+                        {{ item.zipcode }}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4 s4">
+                </div>
+              </div><!-- div src address-->
+
+              <div class="row">
+                <div class="col-sm-4 s4 custom-col-inner div-pdding-left-inner">
+                  <div class="div-pdding-left">
+                    <div class="input-field ">
+                      <h4 for="citizen_id"> ตำบล <span class="remark">*</span> </h4>
+                      <input placeholder="Placeholder"  [(ngModel)]="thaiProvince.district"
+                      formControlName="district" type="text" class="validate" ngDefaultControl>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4 s4 ">
+                  <div class="div-pdding-left">
+                    <div class="input-field ">
+                      <h4 for="citizen_id"> เขต/อำเภอ <span class="remark">*</span> </h4>
+                      <input placeholder="Placeholder"  [(ngModel)]="thaiProvince.amphoe"
+                      formControlName="amphoe" type="text" class="validate" ngDefaultControl>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4 s4 ">
+                  <div class="div-pdding-left">
+                    <div class="input-field ">
+                      <h4 for="citizen_id"> จังหวัด <span class="remark">*</span></h4>
+                      <input placeholder="Placeholder" [(ngModel)]="thaiProvince.province"
+                      formControlName="province" type="text" class="validate" ngDefaultControl>
+                    </div>
+                  </div>
+                </div>
+
+              </div><!-- div 8th paragraph-->
+              <div class="row">
+                <div class="col-sm-4 s4 custom-col-inner" style="padding-left: 2%;">
+                  <div class="div-pdding-left">
+                    <div class="input-field ">
+                      <h4 for="citizen_id"> รหัสไปรษณีย์ <span class="remark">*</span> </h4>
+                      <input placeholder="Placeholder" [(ngModel)]="thaiProvince.zipcode"
+                      formControlName="zipcode" type="text" class="validate" numbersOnly
+                        ngDefaultControl>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-4 s4">
+                  <div class="div-pdding-left">
+                    <div class="input-field ">
+                      <h4 for="citizen_id"> เบอโทรศัพท์ <span class="remark">*</span> </h4>
+                      <input placeholder="Placeholder" formControlName="telno" type="text" class="validate" numbersOnly
+                        ngDefaultControl
+                        (change)="onSelectSection(3)">
+                    </div>
+                  </div>
+                </div>
+              </div><!-- div 9th paragraph-->
+              <hr>
+            </section>
+              <!-- end 3 section-->
+
+            <section *ngIf="section4">
+              <div class="row">
+                <h3 class="text-bold"><i class="material-icons">recent_actors</i> คุณวุฒิของผู้สมัคร</h3>
+                <div class="col-sm-4 s4  custom-col-inner div-pdding-left-inner">
+                  <div class="div-pdding-left">
+                    <div class="input-field ">
+                      <h4 for="citizen_id"> หนังสือสำคัญแสดงคุณวุฒิ <span class="remark">*</span> </h4>
+                      <mat-form-field>
+                        <mat-label>เลือกคุณวุฒิ</mat-label>
+                        <mat-select>
+                          <mat-option [value]="1">
+                            rdred
+                          </mat-option>
+                          <mat-option [value]="1">
+                            e34wrsde34
+                          </mat-option>
+                          <mat-option [value]="1">
+                            อื่นๆ
+                          </mat-option>
+                        </mat-select>
+                        <mat-hint class="remark">เลือกคำนำหน้า</mat-hint>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4 s4">
+                  <div class="div-pdding-left">
+                    <div class="input-field ">
+                      <h4 for="citizen_id"> สาขา <span class="remark">*</span> </h4>
+                      <input placeholder="Placeholder" id="citizen_id" type="text" class="validate">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4 s4">
+                  <div class="div-pdding-left">
+                    <h4 for="citizen_id"> วัน/เดือน/ปีที่สำเร็จ<span class="remark">*</span></h4>
+                    <mat-form-field>
+                      <mat-label style="font-weight: bold;">
+
+                      </mat-label>
+                      <input matInput [matDatepicker]="picker12">
+                      <mat-datepicker-toggle matSuffix [for]="picker12"></mat-datepicker-toggle>
+                      <mat-datepicker #picker12></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div><!-- div 10th paragraph-->
+              <div class="row">
+                <div class="col-sm-4 s4  custom-col-inner div-pdding-left-inner">
+                  <div class="div-pdding-left">
+                    <div class="input-field ">
+                      <h4 for="citizen_id"> จาก (สถานศึกษา) <span class="remark">*</span> </h4>
+                      <input placeholder="Placeholder" id="citizen_id" type="text" class="validate">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4 s4">
+                  <div class="div-pdding-left">
+                    <div class="input-field ">
+                      <h4 for="citizen_id"> เขต/อำเภอ <span class="remark">*</span> </h4>
+                      <input placeholder="Placeholder" id="citizen_id" type="text" class="validate">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4 s4">
+                  <div class="div-pdding-left">
+                    <div class="input-field ">
+                      <h4 for="citizen_id"> จังหวัด <span class="remark">*</span> </h4>
+                      <input placeholder="Placeholder" type="text" class="validate">
+                    </div>
+                  </div>
+                </div>
+              </div><!-- div 11th paragraph-->
+              <div class="row">
+                <div class="col-sm-4 s4  custom-col-inner div-pdding-left-inner">
+                  <div class="div-pdding-left">
+                    <div class="input-field ">
+                      <h4 for="citizen_id"> รหัสไปรษณีย์ <span class="remark">*</span> </h4>
+                      <input placeholder="Placeholder" id="citizen_id" type="text" class="validate">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4 s4">
+                  <div class="div-pdding-left">
+                    <div class="input-field ">
+                      <h4 for="citizen_id"> โทรศัพท์(สถานศึกษา) <span class="remark">*</span> </h4>
+                      <input placeholder="Placeholder" id="citizen_id" type="text" class="validate">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4 s4">
+                  <div class="div-pdding-left">
+                    <div class="input-field ">
+                    </div>
+                  </div>
+                </div>
+              </div><!-- div 11th paragraph-->
+              <div class="row">
+                <div class="col-sm-4 s12 custom-col-inner div-pdding-left-inner">
+                  <div class="div-pdding-left">
+                    <div class="input-field ">
+                      <h4 for="citizen_id"> ทราบข่าวการรับสมัคร* <span class="remark">*</span> </h4>
+                      <input placeholder="Placeholder" id="citizen_id" type="text" class="validate">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr>
+            </section>
+            <!-- end 4 section-->
+            <section *ngIf="section5">
+              <div>
+                <div class="row">
+                  <h3 class="text-bold"><i class="material-icons">attach_file</i> เอกสารที่ต้องอั้พโหลด</h3>
+                  <div class="col-sm-2 s1 div-pdding-left-inner custom-col-inner" >
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="div-pdding-left div-pdding-left-inner-top" >
+                      <h4 class="font-bold"> แนบรูปติดใบสมัคร <span class="remark">*</span></h4>&nbsp;
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="div-pdding-left" (click)="uploadFile1.click()">
+                      <button mat-raised-button color="warn" type="file">เลือกไฟล์รูปภาพ&nbsp;&nbsp;</button>
+                      <input #uploadFile1 type='file'  (change)="onFileImgProfileChanged($event)"   style="display: none;" />
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="div-pdding-left display-file" >
+                      &nbsp;
+                      <span class="remark text-file-warn">
+                        {{imgProfileName}}</span>
+                    </div>
+                  </div>
+                </div><!-- end img upload 1-->
+                <div class="row">
+                  <div class="col-sm-2 s1 div-pdding-left-inner custom-col-inner" >
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="div-pdding-left div-pdding-left-inner-top">
+                      <h4 class="font-bold "> แนบสำเนาบัตรประชาชน <span class="remark">*</span></h4>&nbsp;
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="div-pdding-left" (click)="uploadFile2.click()">
+                      <button mat-raised-button color="warn" type="file">เลือกไฟล์รูปภาพ&nbsp;&nbsp;</button>
+                      <input  #uploadFile2 type='file' (change)="onFileImgCitizenChanged($event)" style="display: none;" />
+
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="div-pdding-left div-pdding-left-inner-top display-file">
+                      &nbsp;
+                      <span class="remark text-file-warn">{{imgCitizenName}}</span>
+                    </div>
+                  </div>
+                </div><!-- end img upload 3-->
+                <div class="row">
+                  <div class="col-sm-2 s1 div-pdding-left-inner custom-col-inner" >
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="div-pdding-left div-pdding-left-inner-top">
+                      <h4 class="font-bold"> แนบสำเนาวุฒิการศึกษา <span class="remark">*</span></h4>&nbsp;
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="div-pdding-left" (click)="uploadFile3.click()">
+                      <button mat-raised-button color="warn" type="file">เลือกไฟล์ไฟล์ pdf</button>
+                      <input #uploadFile3 type='file' (change)="onFilePdfGraduateChanged($event)" style="display: none;" />
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="div-pdding-left div-pdding-left-inner-top display-file" >
+                      &nbsp;
+                      <span class="remark text-file-warn">{{pdfGraduateName}}</span>
+                    </div>
+                  </div>
+                </div><!-- end img upload 4-->
+              </div><!-- end paragraph-->
+            </section>
+
+            <!-- end 5 section-->
+          </form>
+        </div><!-- div main-->
+
+        <div class="card-action">
+          <div class="row">
+            <div class="col-sm-12 s12" style="text-align: center;">
+            <button mat-raised-button color="primary" (click)="btNextSection()" >
+              ขั้นตอนถัดไป
+            </button>&nbsp;&nbsp;&nbsp;
+            <button *ngIf="prevButton" mat-raised-button color="warn"
+            (click)="btPrevSection()">
+          กลับไปก่อนหน้า
+        </button>&nbsp;&nbsp;&nbsp;
+        <button  mat-raised-button color="warn"
+        (click)="uploadFile()">
+      ยืนยันการสมัครเรียน
+    </button>
+            </div>
+            <div class="col-sm-6 s6">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</main>
+<button class="btn" type="button" routerLink="/main-reg">Back</button>

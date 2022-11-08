@@ -1,31 +1,49 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule, Routes } from '@angular/router';
-import { BackButtonDisableModule } from 'angular-disable-browser-back-button';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Router, RouterModule, Routes } from '@angular/router';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, arrayOffRouterIndex, arrayOfHeadAndFooter } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
-const appRoutes: Routes = [
-  { path: '', component: LoginComponent },
- /*  { path: 'course', component: CourseComponent },
-    { path: "course", loadChildren: () => import('./component/couseselect/course.component').then(m => m.CourseComponent),
-  },*/
-]
+import { MaterialsModule } from './materials/materials.module';
+import { MainRegisterModule } from './components/main-register/main-register.module';
+
+import { MaterialsPrimeModule } from './materials/materialsprime.module';
+import { MatDialogModule } from '@angular/material/dialog';
+import { PublicDialogComponent } from './components/main-register/publicdialog/dialog.component';
+import { UploadTestComponent } from './components/upload-test/upload-test.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    arrayOffRouterIndex,
+    arrayOfHeadAndFooter,
+    PublicDialogComponent,
+    UploadTestComponent,
+    //NumberDirective,
+   // NumbersOnlyDirective,
   ],
   imports: [
     BrowserModule,
+    MainRegisterModule,
     AppRoutingModule,
-   // BackButtonDisableModule.forRoot({ preserveScrollPosition: true }),
-    RouterModule.forRoot(appRoutes, { useHash: true }),
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MaterialsModule,
+    ReactiveFormsModule,
+    FormsModule,
+    FlexLayoutModule,
+   // MaterialsPrimeModule,
+
+    //BackButtonDisableModule.forRoot({ preserveScrollPosition: true }),
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  exports: [RouterModule],
+  entryComponents:[MatDialogModule],
+  providers: [{ provide: LOCALE_ID, useValue: "th-TH" }],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

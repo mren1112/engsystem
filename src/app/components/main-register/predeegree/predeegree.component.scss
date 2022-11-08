@@ -1,0 +1,62 @@
+main {
+  width: 95%;
+  margin: 1% auto auto auto;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 8px;
+}
+
+
+.custom-row-inner {
+  width: 95%;
+  margin: auto;
+  margin-top: 5%;
+  padding: 10px 10px 10px 10px;
+}
+
+.div-pdding-left {
+  padding-left: 9%;
+}
+
+.div-pdding-left-inner {
+  padding-left: 2%;
+}
+
+.div-pdding-left-inner-top {
+  padding-top: 3%;
+}
+
+.text-bold {
+  font-weight: bold;
+}
+
+.remark {
+  color: red;
+}
+
+.text-file-warn {
+  padding-left: 3%;
+  color: red;
+  font-weight: bold;
+}
+
+
+/* ----- warning -----------------*/
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.display-file {
+  padding-top: 5%;
+}
+
+.font-bold {
+  font-weight: bold;
+}

@@ -1,0 +1,34 @@
+<p>upload-test works!</p>
+
+
+<div class="container">
+  <form class="upload">
+    <div class="file-container">
+      <input class="file" type="file" (change)="onFileImgProfileChanged($event)"  /> <p></p>
+      <input class="file" type="file" (change)="onFileImgCitizenChanged($event)"  /><p></p>
+      <input class="file" type="file" (change)="onFilePdfGraduateChanged($event)"  /><p></p>
+      <img src="https://simpleicon.com/wp-content/uploads/cloud-upload-2.svg" />
+    </div>
+
+    <div class="detail" *ngIf="fileProfile">
+      {{ fileProfile.name }}
+    </div>
+
+    <div class="detail" *ngIf="!fileProfile">No file selected</div>
+
+    <div class="message" *ngIf="message !== ''">
+      {{ message }}
+    </div>
+    <br>
+
+    <div class="buttons">
+      <input
+        type="button"
+        value="upload"
+        (click)="uploadFile()"
+      />
+    </div>
+
+
+  </form>
+</div>
